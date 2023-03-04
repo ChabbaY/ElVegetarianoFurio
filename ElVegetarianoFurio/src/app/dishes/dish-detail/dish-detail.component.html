@@ -1,0 +1,36 @@
+<mat-spinner *ngIf="!dish || !categories"></mat-spinner>
+<form class="dish-form" *ngIf="dish && categories">
+    <p>
+        <mat-form-field class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" [(ngModel)]="dish.name" maxlength="100" name="name" />
+            <mat-hint align="end">{{dish.name.length}} / 100</mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="full-width">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" [(ngModel)]="dish.description" maxlength="250" name="description" />
+            <mat-hint align="end">{{dish.description.length}} / 250</mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="full-width">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Price" [(ngModel)]="dish.price" name="price" />
+            <mat-hint align="end"><strong>keep cheap!</strong></mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="full-width">
+            <mat-label>Category</mat-label>
+            <mat-select placeholder="Category" [(ngModel)]="dish.categoryId" name="categoryId">
+                <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <button mat-button color="primary" (click)="save()">Save</button>
+        <button mat-button color="warn" (click)="delete()">Delete</button>
+    </p>
+</form>

@@ -1,0 +1,24 @@
+<h2>Speisekarte</h2>
+<mat-spinner *ngIf="!categories"></mat-spinner>
+<mat-list *ngIf="categories">
+    <ng-container *ngFor="let category of categories">
+        <h3 mat-subheader>
+            {{category.name}} ({{category.description}})
+        </h3>
+        <mat-list-item *ngFor="let dish of category.dishes">
+            <h4 mat-line matListItemTitle (click)="gotoDish(dish)">{{dish.id}} - {{dish.name}}</h4>
+            <div mat-line>
+                <div fxlayout="row" matListItemLine>
+                    <div fxFlex="90">{{dish.description}}</div>
+                    <div fxFlex="10">{{dish.price}}</div>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </ng-container>
+</mat-list>
+<span class="add-button">
+    <button mat-fab (click)="addDish()">
+        <mat-icon fontIcon="add"></mat-icon>
+    </button>
+</span>
